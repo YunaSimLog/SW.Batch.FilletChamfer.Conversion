@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraEditors;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,11 +11,16 @@ using System.Windows.Forms;
 
 namespace SW.Batch.FilletChamfer.Conversion
 {
-    public partial class Form1 : Form
+    public partial class MainForm : DevExpress.XtraEditors.XtraForm
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
