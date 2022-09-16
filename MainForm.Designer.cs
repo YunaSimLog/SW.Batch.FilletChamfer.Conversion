@@ -113,6 +113,7 @@ namespace SW.Batch.FilletChamfer.Conversion
             this.btnRemoveFillet.Size = new System.Drawing.Size(251, 34);
             this.btnRemoveFillet.TabIndex = 0;
             this.btnRemoveFillet.Text = "필렛 일괄 제거";
+            this.btnRemoveFillet.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // panelControl3
             // 
@@ -156,6 +157,7 @@ namespace SW.Batch.FilletChamfer.Conversion
             this.btnRemoveChamfer.Size = new System.Drawing.Size(273, 34);
             this.btnRemoveChamfer.TabIndex = 1;
             this.btnRemoveChamfer.Text = "모따기 일괄 제거";
+            this.btnRemoveChamfer.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // tablePanel1
             // 

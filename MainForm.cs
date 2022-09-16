@@ -16,6 +16,8 @@ namespace SW.Batch.FilletChamfer.Conversion
         private Dictionary<string, Feature> m_dicFilletList;    // 필렛 리스트
         private Dictionary<string, Feature> m_dicChamferList;   // 모따기 리스트
 
+        private bool m_bIstLoadMode = false;
+
         public MainForm()
         {
             InitializeComponent();
@@ -28,53 +30,75 @@ namespace SW.Batch.FilletChamfer.Conversion
 
         private void lstb_DrawItem(object sender, ListBoxDrawItemEventArgs e)
         {
-            ListBoxControl lstb = (ListBoxControl)sender;
-            SimpleButton CurBtn = (lstb == lstbFillet ? btnRemoveFillet : btnRemoveChamfer);
-
-            if (lstb.ItemCount == 0)
-                CurBtn.Enabled = false;
-            else
-                CurBtn.Enabled = true;
+            ChgEnableBtn();
         }
 
         private void btnAnalModel_Click(object sender, EventArgs e)
         {
-            // 초기화
-            Init();
-
-            // SOLIDWORKS 연결
-            if (!ConnetSW())
-                return;
-
-            // 현재 열린 문서 가져오기
-            if (!GetModel())
-                return;
-
-            // 필렛과 모따기 정보 가져오기
-            if (!GetFilletNChamferList())
-                return;
-
-            // 필렛 리스트 추가
-            if (!InsertList(m_dicFilletList, true))
+            m_bIstLoadMode = true;
+            try
             {
-                XtraMessageBox.Show("필렛 리스트를 추가하는데 실패하였습니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                // 초기화
+                Init();
+
+                // SOLIDWORKS 연결
+                if (!ConnetSW())
+                    return;
+
+                // 현재 열린 문서 가져오기
+                if (!GetModel())
+                    return;
+
+                // 필렛과 모따기 정보 가져오기
+                if (!GetFilletNChamferList())
+                    return;
+
+                // 필렛 리스트 추가
+                if (!InsertList(m_dicFilletList, true))
+                {
+                    XtraMessageBox.Show("필렛 리스트를 추가하는데 실패하였습니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // 모따기 리스트 추가
+                if (!InsertList(m_dicChamferList, false))
+                {
+                    XtraMessageBox.Show("모따기 리스트를 추가하는데 실패하였습니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
-
-            // 모따기 리스트 추가
-            if (!InsertList(m_dicChamferList, false))
+            catch (Exception ex)
             {
-                XtraMessageBox.Show("모따기 리스트를 추가하는데 실패하였습니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                Debug.Print(ex.Message);
+                Debug.Assert(false);
+            }
+            finally
+            {
+                m_bIstLoadMode = false;
             }
         }
 
         private void lstb_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (!m_bIstLoadMode)
+                return;
+
             ListBoxControl lstb = (ListBoxControl)sender;
             Dictionary<string, Feature> dicFeatList = (lstb == lstbFillet ? m_dicFilletList : m_dicChamferList);
 
             SelFeat(dicFeatList, lstb.SelectedValue.ToString());
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            SimpleButton btnCur = (SimpleButton)sender;
+
+            if (btnCur == btnRemoveFillet)
+                BatchRemoveFeat(m_dicFilletList, lstbFillet);
+            else
+                BatchRemoveFeat(m_dicChamferList, lstbChamfer);
+
+            ChgEnableBtn();
         }
 
         #region Functions
@@ -198,6 +222,77 @@ namespace SW.Batch.FilletChamfer.Conversion
 
             Feature CurFeat = dicCurList[strFeatName];
             CurFeat.Select(false);
+        }
+
+        private bool BatchRemoveFeat(Dictionary<string, Feature> dicCurList, ListBoxControl lstbCur)
+        {
+            try
+            {
+                for (int i = 0; i < lstbCur.ItemCount; i++)
+                {
+                    string strFeatName = lstbCur.GetItemText(i);
+
+                    // 피처 제거
+                    RemoveFeat(dicCurList, strFeatName);
+                }
+
+                dicCurList.Clear();
+                lstbCur.Items.Clear();
+            }
+            catch (Exception e)
+            {
+                Debug.Print(e.Message);
+                Debug.Assert(false);
+                return false;
+            }
+            return true;
+        }
+
+        // TODO: 작업 해야함.
+        private bool SelRemoveFeat(Dictionary<string, Feature> dicCurList, string strFeatName)
+        {
+            try
+            {
+                // 피처 제거
+                RemoveFeat(dicCurList, strFeatName);
+
+            }
+            catch (Exception e)
+            {
+                Debug.Print(e.Message);
+                Debug.Assert(false);
+                return false;
+            }
+            return true;
+        }
+
+        private bool RemoveFeat(Dictionary<string, Feature> dicCurList, string strFeatName)
+        {
+            try
+            {
+                SelFeat(dicCurList, strFeatName);
+                m_CurDoc.EditDelete();
+            }
+            catch (Exception e)
+            {
+                Debug.Print(e.Message);
+                Debug.Assert(false);
+                return false;
+            }
+            return true;
+        }
+
+        private void ChgEnableBtn()
+        {
+            if (lstbFillet.Items.Count == 0)
+                btnRemoveFillet.Enabled = false;
+            else
+                btnRemoveFillet.Enabled = true;
+
+            if (lstbChamfer.Items.Count == 0)
+                btnRemoveChamfer.Enabled = false;
+            else
+                btnRemoveChamfer.Enabled = true;
         }
 
         #endregion
