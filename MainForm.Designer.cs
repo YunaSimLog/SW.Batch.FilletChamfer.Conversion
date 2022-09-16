@@ -30,30 +30,30 @@ namespace SW.Batch.FilletChamfer.Conversion
         private void InitializeComponent()
         {
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.lstbFillet = new DevExpress.XtraEditors.ListBoxControl();
+            this.lbFilletList = new DevExpress.XtraEditors.LabelControl();
+            this.btnRemoveFillet = new DevExpress.XtraEditors.SimpleButton();
+            this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+            this.lstbChamfer = new DevExpress.XtraEditors.ListBoxControl();
+            this.lbChamferList = new DevExpress.XtraEditors.LabelControl();
+            this.btnRemoveChamfer = new DevExpress.XtraEditors.SimpleButton();
             this.tablePanel1 = new DevExpress.Utils.Layout.TablePanel();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
-            this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
-            this.btnConvertChamfer = new DevExpress.XtraEditors.SimpleButton();
-            this.btnConvertFillet = new DevExpress.XtraEditors.SimpleButton();
-            this.lbFilletList = new DevExpress.XtraEditors.LabelControl();
-            this.lbChamferList = new DevExpress.XtraEditors.LabelControl();
-            this.lstbFillet = new DevExpress.XtraEditors.ListBoxControl();
-            this.lstbChamfer = new DevExpress.XtraEditors.ListBoxControl();
-            this.btnAnalModel = new DevExpress.XtraEditors.SimpleButton();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
+            this.btnAnalModel = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lstbFillet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
+            this.panelControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lstbChamfer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel1)).BeginInit();
             this.tablePanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
-            this.panelControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lstbFillet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lstbChamfer)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainerControl1
@@ -70,6 +70,92 @@ namespace SW.Batch.FilletChamfer.Conversion
             this.splitContainerControl1.Size = new System.Drawing.Size(562, 316);
             this.splitContainerControl1.SplitterPosition = 265;
             this.splitContainerControl1.TabIndex = 0;
+            // 
+            // panelControl2
+            // 
+            this.panelControl2.Controls.Add(this.lstbFillet);
+            this.panelControl2.Controls.Add(this.lbFilletList);
+            this.panelControl2.Controls.Add(this.btnRemoveFillet);
+            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl2.Location = new System.Drawing.Point(0, 0);
+            this.panelControl2.Name = "panelControl2";
+            this.panelControl2.Size = new System.Drawing.Size(265, 316);
+            this.panelControl2.TabIndex = 2;
+            // 
+            // lstbFillet
+            // 
+            this.lstbFillet.Location = new System.Drawing.Point(9, 73);
+            this.lstbFillet.Name = "lstbFillet";
+            this.lstbFillet.Size = new System.Drawing.Size(251, 238);
+            this.lstbFillet.TabIndex = 2;
+            this.lstbFillet.SelectedIndexChanged += new System.EventHandler(this.lstb_SelectedIndexChanged);
+            this.lstbFillet.DrawItem += new DevExpress.XtraEditors.ListBoxDrawItemEventHandler(this.lstb_DrawItem);
+            // 
+            // lbFilletList
+            // 
+            this.lbFilletList.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFilletList.Appearance.Options.UseFont = true;
+            this.lbFilletList.Location = new System.Drawing.Point(9, 9);
+            this.lbFilletList.Name = "lbFilletList";
+            this.lbFilletList.Size = new System.Drawing.Size(70, 18);
+            this.lbFilletList.TabIndex = 1;
+            this.lbFilletList.Text = "필렛 리스트";
+            // 
+            // btnRemoveFillet
+            // 
+            this.btnRemoveFillet.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRemoveFillet.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveFillet.Appearance.Options.UseFont = true;
+            this.btnRemoveFillet.Enabled = false;
+            this.btnRemoveFillet.Location = new System.Drawing.Point(9, 33);
+            this.btnRemoveFillet.Name = "btnRemoveFillet";
+            this.btnRemoveFillet.Size = new System.Drawing.Size(251, 34);
+            this.btnRemoveFillet.TabIndex = 0;
+            this.btnRemoveFillet.Text = "필렛 일괄 제거";
+            // 
+            // panelControl3
+            // 
+            this.panelControl3.Controls.Add(this.lstbChamfer);
+            this.panelControl3.Controls.Add(this.lbChamferList);
+            this.panelControl3.Controls.Add(this.btnRemoveChamfer);
+            this.panelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl3.Location = new System.Drawing.Point(0, 0);
+            this.panelControl3.Name = "panelControl3";
+            this.panelControl3.Size = new System.Drawing.Size(287, 316);
+            this.panelControl3.TabIndex = 2;
+            // 
+            // lstbChamfer
+            // 
+            this.lstbChamfer.Location = new System.Drawing.Point(5, 73);
+            this.lstbChamfer.Name = "lstbChamfer";
+            this.lstbChamfer.Size = new System.Drawing.Size(273, 238);
+            this.lstbChamfer.TabIndex = 3;
+            this.lstbChamfer.SelectedIndexChanged += new System.EventHandler(this.lstb_SelectedIndexChanged);
+            this.lstbChamfer.DrawItem += new DevExpress.XtraEditors.ListBoxDrawItemEventHandler(this.lstb_DrawItem);
+            // 
+            // lbChamferList
+            // 
+            this.lbChamferList.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbChamferList.Appearance.Options.UseFont = true;
+            this.lbChamferList.Location = new System.Drawing.Point(5, 9);
+            this.lbChamferList.Name = "lbChamferList";
+            this.lbChamferList.Size = new System.Drawing.Size(83, 18);
+            this.lbChamferList.TabIndex = 2;
+            this.lbChamferList.Text = "모따기 리스트";
+            // 
+            // btnRemoveChamfer
+            // 
+            this.btnRemoveChamfer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRemoveChamfer.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveChamfer.Appearance.Options.UseFont = true;
+            this.btnRemoveChamfer.Enabled = false;
+            this.btnRemoveChamfer.Location = new System.Drawing.Point(5, 33);
+            this.btnRemoveChamfer.Name = "btnRemoveChamfer";
+            this.btnRemoveChamfer.Size = new System.Drawing.Size(273, 34);
+            this.btnRemoveChamfer.TabIndex = 1;
+            this.btnRemoveChamfer.Text = "모따기 일괄 제거";
             // 
             // tablePanel1
             // 
@@ -98,98 +184,6 @@ namespace SW.Batch.FilletChamfer.Conversion
             this.panelControl1.Size = new System.Drawing.Size(562, 43);
             this.panelControl1.TabIndex = 1;
             // 
-            // panelControl2
-            // 
-            this.panelControl2.Controls.Add(this.lstbFillet);
-            this.panelControl2.Controls.Add(this.lbFilletList);
-            this.panelControl2.Controls.Add(this.btnConvertChamfer);
-            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl2.Location = new System.Drawing.Point(0, 0);
-            this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(265, 316);
-            this.panelControl2.TabIndex = 2;
-            // 
-            // panelControl3
-            // 
-            this.panelControl3.Controls.Add(this.lstbChamfer);
-            this.panelControl3.Controls.Add(this.lbChamferList);
-            this.panelControl3.Controls.Add(this.btnConvertFillet);
-            this.panelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl3.Location = new System.Drawing.Point(0, 0);
-            this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(287, 316);
-            this.panelControl3.TabIndex = 2;
-            // 
-            // btnConvertChamfer
-            // 
-            this.btnConvertChamfer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConvertChamfer.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConvertChamfer.Appearance.Options.UseFont = true;
-            this.btnConvertChamfer.Location = new System.Drawing.Point(9, 33);
-            this.btnConvertChamfer.Name = "btnConvertChamfer";
-            this.btnConvertChamfer.Size = new System.Drawing.Size(251, 34);
-            this.btnConvertChamfer.TabIndex = 0;
-            this.btnConvertChamfer.Text = "모따기로 변환";
-            // 
-            // btnConvertFillet
-            // 
-            this.btnConvertFillet.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConvertFillet.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConvertFillet.Appearance.Options.UseFont = true;
-            this.btnConvertFillet.Location = new System.Drawing.Point(5, 33);
-            this.btnConvertFillet.Name = "btnConvertFillet";
-            this.btnConvertFillet.Size = new System.Drawing.Size(273, 34);
-            this.btnConvertFillet.TabIndex = 1;
-            this.btnConvertFillet.Text = "필렛으로 변환";
-            // 
-            // lbFilletList
-            // 
-            this.lbFilletList.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFilletList.Appearance.Options.UseFont = true;
-            this.lbFilletList.Location = new System.Drawing.Point(9, 9);
-            this.lbFilletList.Name = "lbFilletList";
-            this.lbFilletList.Size = new System.Drawing.Size(70, 18);
-            this.lbFilletList.TabIndex = 1;
-            this.lbFilletList.Text = "필렛 리스트";
-            // 
-            // lbChamferList
-            // 
-            this.lbChamferList.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbChamferList.Appearance.Options.UseFont = true;
-            this.lbChamferList.Location = new System.Drawing.Point(5, 9);
-            this.lbChamferList.Name = "lbChamferList";
-            this.lbChamferList.Size = new System.Drawing.Size(83, 18);
-            this.lbChamferList.TabIndex = 2;
-            this.lbChamferList.Text = "모따기 리스트";
-            // 
-            // lstbFillet
-            // 
-            this.lstbFillet.Location = new System.Drawing.Point(9, 73);
-            this.lstbFillet.Name = "lstbFillet";
-            this.lstbFillet.Size = new System.Drawing.Size(251, 238);
-            this.lstbFillet.TabIndex = 2;
-            // 
-            // lstbChamfer
-            // 
-            this.lstbChamfer.Location = new System.Drawing.Point(5, 73);
-            this.lstbChamfer.Name = "lstbChamfer";
-            this.lstbChamfer.Size = new System.Drawing.Size(273, 238);
-            this.lstbChamfer.TabIndex = 3;
-            // 
-            // btnAnalModel
-            // 
-            this.btnAnalModel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAnalModel.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAnalModel.Appearance.Options.UseFont = true;
-            this.btnAnalModel.Location = new System.Drawing.Point(9, 5);
-            this.btnAnalModel.Name = "btnAnalModel";
-            this.btnAnalModel.Size = new System.Drawing.Size(139, 33);
-            this.btnAnalModel.TabIndex = 1;
-            this.btnAnalModel.Text = "모델 분석하기";
-            // 
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -203,6 +197,19 @@ namespace SW.Batch.FilletChamfer.Conversion
             this.btnClose.Text = "닫기";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // btnAnalModel
+            // 
+            this.btnAnalModel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAnalModel.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAnalModel.Appearance.Options.UseFont = true;
+            this.btnAnalModel.Location = new System.Drawing.Point(9, 5);
+            this.btnAnalModel.Name = "btnAnalModel";
+            this.btnAnalModel.Size = new System.Drawing.Size(139, 33);
+            this.btnAnalModel.TabIndex = 1;
+            this.btnAnalModel.Text = "모델 분석하기";
+            this.btnAnalModel.Click += new System.EventHandler(this.btnAnalModel_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -211,21 +218,21 @@ namespace SW.Batch.FilletChamfer.Conversion
             this.Controls.Add(this.tablePanel1);
             this.IconOptions.Image = global::SW.Batch.FilletChamfer.Conversion.Properties.Resources.fillet;
             this.Name = "MainForm";
-            this.Text = "필렛&모따기 일괄 변환";
+            this.Text = "필렛/모따기 일괄 제거";
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
+            this.panelControl2.ResumeLayout(false);
+            this.panelControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lstbFillet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
+            this.panelControl3.ResumeLayout(false);
+            this.panelControl3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lstbChamfer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel1)).EndInit();
             this.tablePanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
-            this.panelControl2.ResumeLayout(false);
-            this.panelControl2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
-            this.panelControl3.ResumeLayout(false);
-            this.panelControl3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lstbFillet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lstbChamfer)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -240,10 +247,10 @@ namespace SW.Batch.FilletChamfer.Conversion
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraEditors.ListBoxControl lstbFillet;
         private DevExpress.XtraEditors.LabelControl lbFilletList;
-        private DevExpress.XtraEditors.SimpleButton btnConvertChamfer;
+        private DevExpress.XtraEditors.SimpleButton btnRemoveFillet;
         private DevExpress.XtraEditors.PanelControl panelControl3;
         private DevExpress.XtraEditors.ListBoxControl lstbChamfer;
         private DevExpress.XtraEditors.LabelControl lbChamferList;
-        private DevExpress.XtraEditors.SimpleButton btnConvertFillet;
+        private DevExpress.XtraEditors.SimpleButton btnRemoveChamfer;
     }
 }
